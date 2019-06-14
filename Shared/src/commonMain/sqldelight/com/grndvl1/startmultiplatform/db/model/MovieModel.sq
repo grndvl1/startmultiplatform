@@ -1,0 +1,12 @@
+CREATE TABLE MovieModel (
+    title TEXT NOT NULL,
+    poster TEXT NOT NULL
+);
+
+
+insertItem:
+INSERT OR FAIL INTO MovieModel(title, poster) VALUES (?, ?);
+
+selectAll:
+SELECT *
+FROM MovieModel;

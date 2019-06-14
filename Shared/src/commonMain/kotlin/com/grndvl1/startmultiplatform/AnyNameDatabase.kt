@@ -1,25 +1,19 @@
 package com.grndvl1.startmultiplatform
 
-import com.grndvl1.startmultiplatform.db.model.WeatherModel
+import com.grndvl1.startmultiplatform.db.model.MovieModel
 import com.squareup.sqldelight.ColumnAdapter
 import com.squareup.sqldelight.db.SqlDriver
 
 fun createDatabase(driver: SqlDriver): AnyNameDatabase {
-    val coordinateAdapter = object : ColumnAdapter<Coordinate, String> {
-        override fun decode(databaseValue: String): Coordinate {
-            val split = databaseValue.split(":")
-            return Coordinate(split[0].toFloat(), split[1].toFloat())
+    val coordinateAdapter = object : ColumnAdapter<String, String> {
+        override fun decode(databaseValue: String): String {
+            return databaseValue
         }
 
-        override fun encode(value: Coordinate): String {
-            return "${value.lat}:${value.lon}"
+        override fun encode(value: String): String {
+            return value
         }
     }
 
-    return AnyNameDatabase(
-        driver,
-        WeatherModel.Adapter(
-            coordinateAdapter = coordinateAdapter
-        )
-    )
+    return AnyNameDatabase(driver)
 }

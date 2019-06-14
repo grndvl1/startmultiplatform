@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
 
         //DO NOT DO THE SAME IN YOUR PRODUCTION CODE, use DI
         val config = SupportSQLiteOpenHelper.Configuration.builder(this)
-            .name("database.db")
+            .name("database1.db")
             .callback(object : SupportSQLiteOpenHelper.Callback(1) {
                 override fun onCreate(db: SupportSQLiteDatabase) {
                     val driver = AndroidSqliteDriver(db)
@@ -51,14 +51,14 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
 
         val database = createDatabase(AndroidSqliteDriver(sqlHelper))
 
-        val weatherDao = WeatherDao(database)
+        val movieDao = MovieDao(database)
 
-        val weatherApi = WeatherApi(engine)
-        val weatherRepository = WeatherRepository(weatherApi, weatherDao)
+        val movieApi = MovieApi(engine)
+        val movieRepository = MovieRepository(movieApi, movieDao)
         launch(Dispatchers.Main) {
             try {
-                val result = withContext(Dispatchers.IO) { weatherRepository.fetchWeather() }
-                //Toast.makeText(this@MainActivity, result.toString(), Toast.LENGTH_LONG).show()
+                val result = withContext(Dispatchers.IO) { movieRepository.fetchMovie() }
+                Toast.makeText(this@MainActivity, result.toString(), Toast.LENGTH_LONG).show()
             } catch (e: Exception) {
                 e.printStackTrace()
                 Toast.makeText(this@MainActivity, e.message, Toast.LENGTH_LONG).show()
@@ -66,7 +66,7 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
         }
 
         launch(Dispatchers.Main) {
-            val result = withContext(Dispatchers.IO) {weatherRepository.selectFromDb()}
+            val result = withContext(Dispatchers.IO) {movieRepository.selectFromDb()}
             Toast.makeText(this@MainActivity, "result from db ${result.toString()}", Toast.LENGTH_LONG).show()
         }
     }
