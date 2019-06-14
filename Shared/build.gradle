@@ -35,7 +35,7 @@ sqldelight {
     AnyNameDatabase {
         //The package where all entities will be generated in
         //More options https://github.com/square/sqldelight
-        packageName = 'com.regin.startmultiplatform'
+        packageName = 'com.grndvl1.startmultiplatform'
 
     }
 }

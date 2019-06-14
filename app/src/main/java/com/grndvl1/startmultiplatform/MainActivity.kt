@@ -1,4 +1,4 @@
-package com.regin.startmultiplatform
+package com.grndvl1.startmultiplatform
 
 import android.os.Bundle
 import android.widget.Toast

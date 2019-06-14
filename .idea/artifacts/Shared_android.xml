@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Shared-android">
+    <output-path>C:\Users\jmatthews\StudioProjects\startmultiplatform\Shared\build\libs</output-path>
+    <root id="archive" name="Shared-android.jar">
+      <element id="module-output" name="startmultiplatform.Shared.androidMain" />
+    </root>
+  </artifact>
+</component>
